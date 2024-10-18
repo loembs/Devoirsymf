@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mx-auto px-4 py-6">
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h1 class="text-xl font-bold mb-4">Créer une nouvelle dette</h1>
+            {{ form_start(form) }}
+            <div class="grid grid-cols-1 gap-4">
+                <div>
+                    {{ form_row(form.montant, {'label': 'Montant de la dette'}) }}
+                </div>
+                <div>
+                    {{ form_row(form.montantVerser, {'label': 'Montant versé'}) }}
+                </div>
+                <div>
+                    {{ form_row(form.client, {'label': 'Client associé'}) }}
+                </div>
+            </div>
+            <div class="mt-4">
+                {{ form_row(form.save) }}
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

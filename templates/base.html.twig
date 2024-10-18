@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}Welcome!{% endblock %}
+    </title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+    
+    {% block stylesheets %}
+        <link href="{{ asset('styles/app.css') }}" rel="stylesheet" crossorigin="anonymous">
+        <link href="{{ asset('build/app.css') }}" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    {% endblock %}
+</head>
+<body class="font-poppins bg-gray-100 min-h-screen flex flex-col">
+{% block body %}
+    {% block header %}
+    <div class="bg-[#1a3a94] w-[87px] h-[206px] absolute"></div>
+    <div class="bg-[#f9f9f9] w-[22px] h-5 rounded-[3px] absolute top-[19px] left-[15px]"></div>
+    <div class="text-white font-bold text-[6px] text-center absolute left-[36px] top-[21px] w-9">
+        Gestion Boutique
+    </div>
+    {% endblock %}
+    
+<nav class="fixed bg-[#1a3a94] text-white flex flex-col w-48 h-full p-5 space-y-6">
+    <!-- Logo et titre -->
+    <div class="mb-6 flex items-center text-xl font-bold space-x-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 8v4h4m4 4a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>Gestion Boutique</span>
+    </div>
+
+    <!-- Menu Links avec icônes SVG -->
+    <a class="flex items-center mb-3 text-sm hover:text-gray-300 space-x-2">
+        <!-- Ant Design: Dashboard TwoTone -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path d="M4 13h4v8H4v-8zm6 0h10v8H10v-8zM4 3h4v8H4V3zm6 0h10v8H10V3z" />
+        </svg>
+        <span>Dashboard</span>
+    </a>
+
+    <a class="flex items-center mb-3 text-sm hover:text-gray-300 space-x-2">
+        <!-- MDI: Dollar -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path d="M12 1a9 9 0 11-6.36 15.36c-.65-.66-1.19-1.43-1.59-2.3a1 1 0 011.85-.84c.32.68.75 1.31 1.26 1.82A7 7 0 1012 5.69V7a1 1 0 01-1.5.87l-4-2.5a1 1 0 010-1.74l4-2.5A1 1 0 0112 2v2.31A9 9 0 0112 1z" />
+        </svg>
+        <span>Dettes</span>
+    </a>
+
+    <a href="{{ path('clients.index') }}" class="flex items-center mb-3 text-sm hover:text-gray-300 space-x-2">
+        <!-- Fluent: People Team 32 -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 32 32" stroke="currentColor">
+            <path d="M10.5 9C10.5 6.23858 12.7386 4 15.5 4C18.2614 4 20.5 6.23858 20.5 9C20.5 11.7614 18.2614 14 15.5 14C12.7386 14 10.5 11.7614 10.5 9ZM24.5 13.5C24.5 11.567 26.067 10 28 10C29.933 10 31.5 11.567 31.5 13.5C31.5 15.433 29.933 17 28 17C26.067 17 24.5 15.433 24.5 13.5Z" />
+        </svg>
+        <span>Clients</span>
+    </a>
+
+    <a href="{{ path('articles.index') }}" class="flex items-center mb-3 text-sm hover:text-gray-300 space-x-2">
+        <!-- Lineicons: Package -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M21 16V8L12 3 3 8v8l9 5 9-5zm-9 3.09L5 16v-2l7 3.5V19zM19 16l-7 3.5V17.5L19 14v2zM5 14l7-3.5L19 14l-7-3.5L5 14zm0-2.5L12 6 19 11v2l-7-3.5L5 11v-2z" />
+        </svg>
+        <span>Articles</span>
+    </a>
+
+    <a class="flex items-center mb-3 text-sm hover:text-gray-300 space-x-2">
+        <!-- Material Symbols: Mail Outline -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2v.01L12 11 4 6v-.01L12 10l8-4z" />
+        </svg>
+        <span>Demandes</span>
+    </a>
+
+    <a class="flex items-center mb-3 text-sm hover:text-gray-300 space-x-2">
+        <!-- MDI: User -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12c0 5.52 4.48 10 10 10s10-4.48 10-10c0-5.52-4.48-10-10-10zm0 5a3 3 0 11-.002 6.002A3 3 0 0112 7zm0 12c-2.33 0-4.31-1.46-5.12-3.5C7.33 14.4 9.61 13 12 13s4.67 1.4 5.12 3.5C16.31 17.54 14.33 19 12 19z" />
+        </svg>
+        <span>Utilisateurs</span>
+    </a>
+</nav>
+
+
+    
+    <div class="flex justify-between items-center bg-white shadow py-2 px-4">
+    <!-- Barre de recherche -->
+    <div class="ml-56 mt-6">
+        <input type="text" class="search-bar p-2 border border-gray-300 rounded-md w-[50%] mb-5" placeholder="Recherche dans votre boutique...">
+    </div>
+
+    <!-- Section à droite -->
+     <div class="flex items-center space-x-4">
+        <!-- Photo de l'utilisateur -->
+        <img src="{{ asset('path_to_user_image.jpg') }}" alt="Photo de Patrick Natsi" class="w-10 h-10 rounded-full shadow">
+
+        <!-- Nom de l'utilisateur -->
+        <div class="text-black text-sm font-normal">
+            Patrick Natsi
+        </div>
+    </div>
+</div>
+
+
+    <main class="ml-56 flex-grow p-5">
+		{% block main %}{% endblock %}
+    </main>
+
+    <footer class="bg-white p-4 shadow w-full mt-auto">
+        <div class="flex justify-between">
+            <div class="text-xs text-gray-600">Patrick Natsi</div>
+            <div class="bg-gray-200 w-[13px] h-[13px] rounded-full"></div>
+        </div>
+    </footer>
+  {% endblock %}
+    {% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/@heroicons/vue@1.0.6"></script>
+    {% endblock %}
+</body>
+</html>

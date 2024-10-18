@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+   <div class="container mx-auto px-4 py-8">
+     <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <div class="bg-gray-800 text-white text-xl font-semibold p-4">
+            Liste des Articles
+        </div>
+        <div class="p-6 bg-gray-100">
+          <div class="flex justify-end mb-4">
+           <a
+            class="btn border border-gray-700 text-gray-700 px-4 py-2 hover:bg-gray-700 hover:text-white transition duration-300"
+            href="#"
+            role="button"
+            >Create</a>
+          </div>
+           
+           <div class="overflow-x-auto">
+            <table class="min-w-full table-auto bg-white shadow-lg rounded-lg">
+                <thead class="bg-[#f9f9f9] text-gray-700">
+                    <tr>
+                        <th class="px-4 py-2">#</th>
+                        <th class="px-4 py-2">Reference</th>
+                        <th class="px-4 py-2">Libelle</th>
+                        <th class="px-4 py-2">Qte Stock</th>
+                        <th class="px-4 py-2">Prix</th>
+                        <th class="px-4 py-2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-700">
+                    <tr class="border-b">
+                        <td class="px-4 py-2">R1C1</td>
+                        <td class="px-4 py-2">R1C2</td>
+                        <td class="px-4 py-2">R1C2</td>
+                        <td class="px-4 py-2">R1C2</td>
+                        <td class="px-4 py-2">R1C2</td>
+                        <td class="px-4 py-2">
+                        <a
+                            class="btn border border-gray-700 text-gray-700 px-2 py-1 hover:bg-gray-700 hover:text-white transition duration-300"
+                            href="#"
+                            role="button"
+                            >Detail</a>
+                        <a
+                            class="btn border border-red-700 text-red-700 px-2 py-1 hover:bg-red-700 hover:text-white transition duration-300 ml-2"
+                            href="#"
+                            role="button"
+                            >Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <nav aria-label="Page navigation" class="flex justify-end mt-4">
+                <ul class="inline-flex items-center space-x-2">
+                    <li>
+                        <a class="px-3 py-1 border border-gray-400 text-gray-400 cursor-not-allowed">&laquo;</a>
+                    </li>
+                    <li>
+                        <a class="px-3 py-1 border border-gray-700 text-white bg-gray-700">1</a>
+                    </li>
+                    <li>
+                        <a class="px-3 py-1 border border-gray-400 text-gray-700">2</a>
+                    </li>
+                    <li>
+                        <a class="px-3 py-1 border border-gray-400 text-gray-700">3</a>
+                    </li>
+                    <li>
+                        <a class="px-3 py-1 border border-gray-700 text-gray-700">&raquo;</a>
+                    </li>
+                </ul>
+            </nav>
+           </div>
+        </div>
+    </div>
+   </div>
+{% endblock %}

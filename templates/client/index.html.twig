@@ -1,0 +1,133 @@
+{% extends 'base.html.twig' %}
+{% block main %}
+    <div class="container mx-auto px-4">
+        <div class="bg-white rounded-lg shadow-lg">
+
+            <div class="bg-gray-200 rounded-t-lg p-4 text-lg font-bold">Liste des clients</div>
+            <div class="p-4">
+                <div class="container mx-auto px-4 py-6">
+       				<div class="flex justify-end mb-4">
+						<a class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-200" href="{{ path('clients.store') }}" role="button">
+							Create
+						</a>
+					</div>
+				</div>
+                {# Uncomment if you want to include the search form #}
+                {# 
+                <form class="flex mb-4">
+                    <input class="form-control  me-sm-2 " type="text" placeholder="Téléphone" />
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                        Search
+                    </button>
+                </form> 
+                #}
+
+                {{ form_start(formSearch) }}
+                <div class='mb-2 text-red-500'>
+                    {{ form_errors(formSearch.telephone) }}
+                </div>
+                <div class='flex mb-4'>
+                    {{ form_widget(formSearch.telephone, { 'attr' : {
+                            'class' : 'form-input rounded border-gray-300 focus:ring focus:ring-blue-500'
+                        }}) }}
+                    {{ form_widget(formSearch.Search, { 'attr' : {
+                            'class' : 'ml-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-200'
+                        }}) }}
+                </div>
+                {{ form_end(formSearch) }}
+
+                <div class="overflow-x-auto mt-3">
+                    <table class="min-w-full bg-white border border-gray-300 rounded-lg">
+                        <thead>
+                            <tr class="bg-gray-100 text-gray-600">
+                                <th class="py-2 px-4 border-b">#</th>
+                                <th class="py-2 px-4 border-b">Nom</th>
+                                <th class="py-2 px-4 border-b">Prenom</th>
+                                <th class="py-2 px-4 border-b">Surname</th>
+                                <th class="py-2 px-4 border-b">Téléphone</th>
+                                <th class="py-2 px-4 border-b">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for client in datas %}
+                                <tr class="hover:bg-gray-50">
+                                    <td class="py-2 px-4 border-b">
+                                        <img src="{{ asset('images/avatar.jpg') }}" alt="avatar.jpg" class="w-10 h-10 rounded-full">
+                                    </td>
+                                    <td class="py-2 px-4 border-b">
+                                        {% if client.user %}
+                                            {{ client.user.nom }}
+                                        {% endif %}
+                                    </td>
+                                    <td class="py-2 px-4 border-b">
+                                        {% if client.user %}
+                                            {{ client.user.prenom }}
+                                        {% endif %}
+                                    </td>
+                                    <td class="py-2 px-4 border-b">{{ client.surname }}</td>
+                                    <td class="py-2 px-4 border-b">{{ client.telephone }}</td>
+                                    <td class="py-2 px-4 border-b">
+                                        <a class="text-blue-600 hover:text-blue-800 mr-2" href="{{ path('dette.index') }}" role="button">Dettes</a>
+                                        <a class="text-red-600 hover:text-red-800" href="#" role="button">Delete</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                <nav aria-label="Page navigation" class="flex justify-end mt-4">
+					<ul class="flex list-none">
+						{# Lien vers la page précédente, désactivé si on est sur la première page #}
+						<li class="page-item {{ page == 1 ? 'disabled' : '' }}">
+							<a class="page-link text-gray-500" href="?page={{ page - 1 }}" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span> <!-- Flèche gauche -->
+							</a>
+						</li>
+						
+						{# Boucle sur les pages disponibles #}
+						{% for i in 1..maxPage %}
+							<li class="page-item {{ i == page ? 'bg-blue-500 text-white' : 'text-blue-600' }} rounded mx-1">
+								<a class="page-link px-4 py-2 border rounded" href="?page={{ i }}">
+									{{ i }}
+								</a>
+							</li>
+						{% endfor %}
+						
+						{# Lien vers la page suivante, désactivé si on est sur la dernière page #}
+						<li class="page-item {{ page == maxPage ? 'disabled' : '' }}">
+							<a class="page-link text-gray-500" href="?page={{ page + 1 }}" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span> <!-- Flèche droite -->
+							</a>
+						</li>
+					</ul>
+			</nav>
+
+                </div>
+
+            </div>
+        </div>
+    </div><script>
+        // Script pour ouvrir et fermer le modal
+        const openModalButton = document.getElementById('openModal');
+        const closeModalButton = document.getElementById('closeModal');
+        const modal = document.getElementById('myModal');
+        const overlay = document.getElementById('modalOverlay');
+
+        openModalButton.onclick = function() {
+            modal.classList.remove('hidden');
+            overlay.classList.remove('hidden');
+        };
+
+        closeModalButton.onclick = function() {
+            modal.classList.add('hidden');
+            overlay.classList.add('hidden');
+        };
+
+        // Fermer le modal si l'utilisateur clique en dehors
+        overlay.onclick = function() {
+            modal.classList.add('hidden');
+            overlay.classList.add('hidden');
+        };
+    </script>
+
+
+{% endblock %}

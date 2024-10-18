@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <div class="container mx-auto px-4">
+        <div class="bg-white rounded-lg shadow-lg">
+            <div class="bg-gray-200 rounded-t-lg p-4 text-lg font-bold">Liste des dettes</div>
+            <div class="flex justify-end mb-4">
+                <a class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-200" href="{{ path('dette.create') }}" role="button">
+                    Create
+                </a>
+            </div>
+
+            <!-- Formulaire de filtre par statut -->
+            <form method="GET" action="{{ path('dette.index') }}" class="p-4">
+                <div class="flex items-center space-x-4">
+                    <label>
+                        <input type="radio" name="status" value="all" {% if status == 'all' %}checked{% endif %}> Tous
+                    </label>
+                    <label>
+                        <input type="radio" name="status" value="solde" {% if status == 'solde' %}checked{% endif %}> Soldé
+                    </label>
+                    <label>
+                        <input type="radio" name="status" value="non_solde" {% if status == 'non_solde' %}checked{% endif %}> Non Soldé
+                    </label>
+                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Filtrer</button>
+                </div>
+            </form>
+
+            <div class="overflow-x-auto mt-3">
+                <table class="min-w-full bg-white border border-gray-300 rounded-lg">
+                    <thead>
+                        <tr class="bg-gray-100 text-gray-600">
+                            <th class="py-2 px-4 border-b">Date</th>
+                            <th class="py-2 px-4 border-b">Montant</th>
+                            <th class="py-2 px-4 border-b">Montant Versé</th>
+                            <th class="py-2 px-4 border-b">Restant</th>
+                            <th class="py-2 px-4 border-b">Statut</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for dette in dettes %}
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-2 px-4 border-b">{{ dette.createAt|date('Y-m-d') }}</td>
+                                <td class="py-2 px-4 border-b">{{ dette.montant }}</td>
+                                <td class="py-2 px-4 border-b">{{ dette.montantVerser }}</td>
+                                <td class="py-2 px-4 border-b">{{ dette.montant - dette.montantVerser }}</td>
+                                <td class="py-2 px-4 border-b">
+                                    {% if dette.montant == dette.montantVerser %}
+                                        <span class="text-green-600 font-bold">Soldé</span>
+                                    {% else %}
+                                        <span class="text-red-600 font-bold">Non Soldé</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="5" class="text-center py-4">Aucune dette trouvée</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
